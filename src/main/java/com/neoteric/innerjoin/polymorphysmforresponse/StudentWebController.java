@@ -13,23 +13,23 @@ public class StudentWebController {
     @Autowired
     private StudentDatabaseService studentDatabaseService;
 
-    // Show the home page with student ID input form (GET)
+    // Show the home page with student ID
     @GetMapping("/")
     public String showHomePage() {
-        return "home"; // This will resolve to home.html
+        return "home";
     }
 
-    // Handle student ID submission and display student details (POST)
+    // display student details
     @PostMapping("/students/view")
     public String showStudent(@RequestParam("studentId") String studentId, Model model) {
         Students student = studentDatabaseService.getStudentById(studentId);
 
         if (student != null) {
             model.addAttribute("student", student);
-            return "student"; // This will resolve to student.html
+            return "student";
         } else {
             model.addAttribute("error", "Student not found with ID: " + studentId);
-            return "home"; // Redirect to home page
+            return "home";
         }
     }
 }

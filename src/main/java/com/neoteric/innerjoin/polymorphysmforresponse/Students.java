@@ -19,10 +19,4 @@ public class Students {
 
     }
 
-    public Students(String studentName, int studentAge, String studentId, List<Subjects> subjects) {
-        this.studentName = studentName;
-        this.studentAge = studentAge;
-        this.studentId = studentId;
-        this.subjects = subjects;
-    }
 }

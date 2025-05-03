@@ -15,8 +15,4 @@ public class Subjects {
 
     }
 
-    public Subjects(String studentId, String subject, int marks) {
-        this.subject = subject;
-        this.marks = marks;
-    }
 }
