@@ -62,22 +62,22 @@ public class StudentDatabaseService {
         List<Subjects> subjectList = new ArrayList<>();
 
         try (Connection conn = dataSource.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
-            ps.setString(1, studentId);
-            ResultSet rs = ps.executeQuery();
+            preparedStatement.setString(1, studentId);
+            ResultSet resultSet= preparedStatement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 if (student == null) {
                     student = new Students();
                     student.setStudentId(studentId);
-                    student.setStudentName(rs.getString("studentName"));
-                    student.setStudentAge(rs.getInt("studentAge"));
+                    student.setStudentName(resultSet.getString("studentName"));
+                    student.setStudentAge(resultSet.getInt("studentAge"));
                 }
 
                 Subjects subject = new Subjects();
-                subject.setSubject(rs.getString("subject"));
-                subject.setMarks(rs.getInt("marks"));
+                subject.setSubject(resultSet.getString("subject"));
+                subject.setMarks(resultSet.getInt("marks"));
                 subjectList.add(subject);
             }
 
