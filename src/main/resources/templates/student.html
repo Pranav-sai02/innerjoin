@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+</head>
+<body>
+<h1>Student Details</h1>
+
+<p><strong>Name:</strong> <span th:text="${student.studentName}"></span></p>
+<p><strong>Age:</strong> <span th:text="${student.studentAge}"></span></p>
+
+<h3>Subjects</h3>
+<ul>
+  <th:block th:each="subject : ${student.subjects}">
+    <li th:text="${subject.subject} + ' - ' + ${subject.marks}"></li>
+  </th:block>
+</ul>
+
+<!-- Link back to home page -->
+<a href="/">Back to Home</a>
+</body>
+</html>

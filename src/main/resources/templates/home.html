@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+</head>
+<body>
+<h1>Enter Student ID</h1>
+
+<form action="/students/view" method="POST">
+  <label for="studentId">Student ID:</label>
+  <input type="text" id="studentId" name="studentId" required>
+  <button type="submit">Submit</button>
+</form>
+
+<!-- Display error message if any -->
+<p th:if="${error}" th:text="${error}" style="color: red;"></p>
+</body>
+</html>
