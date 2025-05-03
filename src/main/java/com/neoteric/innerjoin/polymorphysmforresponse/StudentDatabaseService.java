@@ -91,4 +91,17 @@ public class StudentDatabaseService {
 
         return student;
     }
+
+
+    public double calculateAverage(List<Subjects> subjects) {
+        if (subjects == null || subjects.isEmpty()) {
+            return 0;
+        }
+        double totalMarks = 0;
+        for (Subjects subject : subjects) {
+            totalMarks += subject.getMarks();
+        }
+        return totalMarks / subjects.size();
+    }
+
 }

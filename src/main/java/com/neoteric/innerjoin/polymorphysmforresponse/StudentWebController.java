@@ -26,6 +26,9 @@ public class StudentWebController {
 
         if (student != null) {
             model.addAttribute("student", student);
+
+            double averageMarks = studentDatabaseService.calculateAverage(student.getSubjects());
+            model.addAttribute("averageMarks", averageMarks);
             return "student";
         } else {
             model.addAttribute("error", "Student not found with ID: " + studentId);

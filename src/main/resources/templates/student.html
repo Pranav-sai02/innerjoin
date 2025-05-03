@@ -4,21 +4,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+
+
+    h2, h3 {
+      color: #4CAF50;
+      text-align: center;
+    }
+
+    table {
+      width: 60%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .pass {
+      color: green;
+      font-weight: bold;
+    }
+
+    .fail {
+      color: red;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    a:hover {
+      background-color: #45a049;
+    }
+
+  </style>
 </head>
 <body>
-<h1>Student Details</h1>
 
-<p><strong>Name:</strong> <span th:text="${student.studentName}"></span></p>
-<p><strong>Age:</strong> <span th:text="${student.studentAge}"></span></p>
+<header>
+  <h1>Student Details</h1>
+</header>
 
-<h3>Subjects</h3>
-<ul>
-  <th:block th:each="subject : ${student.subjects}">
-    <li th:text="${subject.subject} + ' - ' + ${subject.marks}"></li>
-  </th:block>
-</ul>
+<div class="container">
+  <!-- Display Name and Age -->
+  <p><strong>Name:</strong> <span th:text="${student.studentName}"></span></p>
+  <p><strong>Age:</strong> <span th:text="${student.studentAge}"></span></p>
 
-<!-- Link back to home page -->
-<a href="/">Back to Home</a>
+  <h3>Overall Status</h3>
+  <p><strong>Average Marks:</strong>
+    <span th:text="${averageMarks}"></span>
+  </p>
+
+  <!-- Display Pass or Fail -->
+  <p th:classappend="${averageMarks >= 50} ? 'pass' : 'fail'"
+     th:text="${averageMarks >= 50} ? 'Pass' : 'Fail'"></p>
+
+  <!-- Display Subjects and Marks in a Table -->
+  <h3>Subjects</h3>
+  <table>
+    <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Marks</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="subject : ${student.subjects}">
+      <tr>
+        <td th:text="${subject.subject}"></td>
+        <td th:text="${subject.marks}"></td>
+      </tr>
+    </th:block>
+    </tbody>
+  </table>
+
+  <!-- Link back to home page -->
+  <a href="/">Back to Home</a>
+</div>
+
 </body>
 </html>
